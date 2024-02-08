@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ToppingDAO extends JpaRepository<Toppings, Long> {
-    @Query("SELECT t FROM Toppings t ORDER BY t.calories DESC")
-    Toppings findToppingWithHighestCalories();
 }

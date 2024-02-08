@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Slf4j
 @Component
@@ -19,6 +22,12 @@ public class Runner implements CommandLineRunner {
     PizzaService pizzaService;
     @Autowired
     ToppingService toppingService;
+    @Autowired
+    DrinkDAO drinkDAO;
+    @Autowired
+    PizzaDAO pizzaDAO;
+    @Autowired
+    ToppingDAO toppingDAO;
 
     @Override
     public void run(String... args) throws Exception {
@@ -48,10 +57,9 @@ public class Runner implements CommandLineRunner {
         pizzaService.save(pizzaMargherita);
         pizzaService.save(pizzaHawaiian);
         pizzaService.save(pizzaSalami);
-        System.out.println("--------------------------------------------- FIND BY QUERIES -----------------------------------------");
-//        System.out.println("Drink con il prezzo piú basso: " + DrinkDAO.findDrinkWithLowestPrice().getName());
-//        System.out.println("Pizze con formaggio: " + PizzaDAO.findPizzasByTopping("Cheese"));
-//        System.out.println("Topping con le calorie piú alte: " + ToppingDAO.findToppingWithHighestCalories().getName());
-//        System.out.println("Pizze con un prezzo tra 5 e 10: " + PizzaDAO.findPizzasByPriceRange(5D, 10D));
+        System.out.println("--------------------------------------------- FIND DRINKS -----------------------------------------");
+        System.out.println("Drinks ordinati per prezzo (ascendente):");
+        List<Drinks> drinksAsc = drinkDAO.findDrinksOrderedByPriceAsc();
+        drinksAsc.forEach(drink -> System.out.println(drink.getName()));
     }
 }

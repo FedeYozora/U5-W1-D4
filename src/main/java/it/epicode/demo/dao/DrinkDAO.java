@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface DrinkDAO extends JpaRepository<Drinks,Long> {
     @Query("SELECT d FROM Drinks d ORDER BY d.price ASC")
-    Drinks findDrinkWithLowestPrice();
+    List<Drinks> findDrinksOrderedByPriceAsc();
 }
