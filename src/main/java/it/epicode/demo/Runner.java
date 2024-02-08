@@ -61,5 +61,8 @@ public class Runner implements CommandLineRunner {
         System.out.println("Drinks ordinati per prezzo (ascendente):");
         List<Drinks> drinksAsc = drinkDAO.findDrinksOrderedByPriceAsc();
         drinksAsc.forEach(drink -> System.out.println(drink.getName()));
+        System.out.println("--------------------------------------------- FIND PIZZAS-----------------------------------------");
+        System.out.println("Pizze salvate:");
+        pizzaService.displaySavedPizzas();
     }
 }
